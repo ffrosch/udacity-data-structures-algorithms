@@ -32,21 +32,22 @@ def unique_numbers(data, phone_col):
     
     return output
 
-def numbers_calling(calls):
-    pass
-
-def numbers_receiving(calls):
-    pass
-
-def numbers_texting(texts):
-    pass
-
 def only_calling(calls):
-    pass
+    calling = unique_numbers(calls, 0)
+    receiving = unique_numbers(calls, 1)
+    return calling - receiving
 
-def never_texting(calls, texts):
-    pass
+def using_texts(texts):
+    sending = unique_numbers(texts, 0)
+    receiving = unique_numbers(texts, 1)
+    return sending | receiving
 
 def possible_telemarketers(calls, texts):
-    pass
+    only_called = only_calling(calls)
+    used_texts = using_texts(texts)
+    candidates = only_called - used_texts
+    pruned_candidates = [number for number in candidates if not number.startswith('140')]
+    return pruned_candidates
 
+for number in possible_telemarketers(calls, texts):
+    print(number)
