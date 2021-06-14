@@ -20,27 +20,31 @@ Print a message:
 September 2016.".
 """
 
-# Sum up phone times
-phone_time = dict()
-for entry in calls:
-    numbers = [entry[0], entry[1]]
-    time = entry[3]
-    for number in numbers:
-        if number not in phone_time:
-            phone_time[number] = int(time)
-        else:
-            phone_time[number] += int(time)
+def total_phone_time(calls):
+    total_time = dict()
+    for call in calls:
+        numbers = [call[0], call[1]]
+        time = call[3]
+        for number in numbers:
+            if number not in total_time:
+                total_time[number] = int(time)
+            else:
+                total_time[number] += int(time)
+    return total_time
 
+def longest_phone_time(calls):
+    # short but cryptic implementation
+    # max_time = max(phone_time.items(), key=lambda item: item[1])
 
-# short but cryptic implementation
-# max_time = max(phone_time.items(), key=lambda item: item[1])
+    # manual implementation for better interpretability concerning Big O notation
+    phone_times = total_phone_time(calls)
+    max_time = 0
+    max_number = ''
+    for number, time in phone_times.items():
+        if time > max_time:
+            max_time = time
+            max_number = number
+    return [max_number, max_time]
 
-# manual implementation
-max_time = 0
-max_number = ''
-for number, time in phone_time.items():
-    if time > max_time:
-        max_time = time
-        max_number = number
-
-print(f'{max_number} spent the longest time, {max_time} seconds, on the phone during September 2016.')
+max_time = longest_phone_time(calls)
+print(f'{max_time[0]} spent the longest time, {max_time[1]} seconds, on the phone during September 2016.')
