@@ -46,5 +46,26 @@ def longest_phone_time(calls):
             max_number = number
     return [max_number, max_time]
 
+def test():
+    calls = [
+        ['(080)2222222', '1401234567', '01-09-2016 01:01:01', '10'],
+        ['(080)3333333', '1401234568', '01-09-2016 02:01:01', '20'],
+        ['(080)4444444', '1401234568', '01-09-2016 03:01:01', '30'],
+    ]
+
+    result_total_phone_time = {
+        '(080)2222222': 10,
+        '(080)3333333': 20,
+        '(080)4444444': 30,
+        '1401234567': 10,
+        '1401234568': 50,
+    }
+
+    total_times = total_phone_time(calls)
+    max_time = longest_phone_time(calls)
+    assert(total_times == result_total_phone_time)
+    assert(max_time == ['1401234568', 50])
+
+# test()
 max_time = longest_phone_time(calls)
 print(f'{max_time[0]} spent the longest time, {max_time[1]} seconds, on the phone during September 2016.')
