@@ -47,7 +47,25 @@ def possible_telemarketers(calls, texts):
     used_texts = using_texts(texts)
     candidates = only_called - used_texts
     pruned_candidates = [number for number in candidates if not number.startswith('140')]
-    return pruned_candidates
+    return sorted(pruned_candidates)
 
+def test():
+    calls = [
+        ['(080)1111111', '(080)2222222'], # only calling
+        ['(080)2222222', '1401234567'], # calling and receiving
+        ['(080)3333333', '1401234567'], # only calling but also sending texts
+        ['(080)4444444', '1401234567'], # only calling but also receiving texts
+    ]
+
+    texts = [
+        ['(080)3333333', '1401234567'], # calls and sends texts
+        ['1401234567', '(080)4444444'], # calls and receives texts
+    ]
+
+    assert(only_calling(calls) == set(['(080)1111111', '(080)3333333', '(080)4444444']))
+    assert(using_texts(texts) == set(['(080)3333333', '1401234567', '(080)4444444']))
+    assert(possible_telemarketers(calls, texts) == ['(080)1111111'])
+
+# test()
 for number in possible_telemarketers(calls, texts):
     print(number)
