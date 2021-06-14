@@ -29,7 +29,6 @@ def unique_numbers(data, phone_col):
     output = set()
     for row in data:
         output.add(row[phone_col])
-    
     return output
 
 def only_calling(calls):
@@ -67,5 +66,6 @@ def test():
     assert(possible_telemarketers(calls, texts) == ['(080)1111111'])
 
 # test()
+print('These numbers could be telemarketers:')
 for number in possible_telemarketers(calls, texts):
     print(number)
