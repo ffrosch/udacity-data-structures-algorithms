@@ -20,10 +20,15 @@ Print messages:
 "Last record of calls, <incoming number> calls <answering number> at time <time>, lasting <during> seconds"
 """
 
-texts_first = texts[0]
-calls_last = calls [-1]
+def first_record(data):
+    return data[0]
 
-if __name__ == '__main__':
-    print(f'First record of texts, {texts_first[0]} texts {texts_first[1]} at time {texts_first[2]}')
-    print(f'Last record of calls, {calls_last[0]} calls {calls_last[1]} at time {calls_last[2]}, lasting {calls_last[3]} seconds')
-    
+def last_record(data):
+    return data[-1]
+
+
+first_sms = first_record(texts)
+last_call = last_record(calls)
+
+print(f'First record of texts, {first_sms[0]} texts {first_sms[1]} at time {first_sms[2]}')
+print(f'Last record of calls, {last_call[0]} calls {last_call[1]} at time {last_call[2]}, lasting {last_call[3]} seconds')
