@@ -26,7 +26,14 @@ def first_record(data):
 def last_record(data):
     return data[-1]
 
+def test():
+    first_sms = first_record(texts)
+    last_call = last_record(calls)
 
+    assert(first_sms == ['97424 22395', '90365 06212', '01-09-2016 06:03:22'])
+    assert(last_call == ['98447 62998', '(080)46304537', '30-09-2016 23:57:15', '2151'])
+
+# test()
 first_sms = first_record(texts)
 last_call = last_record(calls)
 
