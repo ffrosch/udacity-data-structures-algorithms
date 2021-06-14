@@ -25,3 +25,28 @@ Print a message:
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
 
+def unique_numbers(data, phone_col):
+    output = set()
+    for row in data:
+        output.add(row[phone_col])
+    
+    return output
+
+def numbers_calling(calls):
+    pass
+
+def numbers_receiving(calls):
+    pass
+
+def numbers_texting(texts):
+    pass
+
+def only_calling(calls):
+    pass
+
+def never_texting(calls, texts):
+    pass
+
+def possible_telemarketers(calls, texts):
+    pass
+
