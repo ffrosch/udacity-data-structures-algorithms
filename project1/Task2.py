@@ -20,15 +20,17 @@ Print a message:
 September 2016.".
 """
 
+from collections import defaultdict
+
 def total_phone_time(calls):
-    total_time = dict()
+    total_time = defaultdict(int)
     for call in calls:
         caller = call[0]
         receiver = call[1]
         duration = call[-1]
 
-        total_time[caller] = total_time.get(caller, 0) + int(duration)
-        total_time[receiver] = total_time.get(receiver, 0) + int(duration)
+        total_time[caller] += int(duration)
+        total_time[receiver] += int(duration)
 
     return total_time
 
