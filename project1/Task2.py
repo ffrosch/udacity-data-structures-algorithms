@@ -33,17 +33,10 @@ def total_phone_time(calls):
     return total_time
 
 def longest_phone_time(calls):
-    # short but cryptic implementation
-    # max_time = max(phone_time.items(), key=lambda item: item[1])
-
-    # manual implementation for better interpretability concerning Big O notation
     phone_times = total_phone_time(calls)
-    max_time = 0
-    max_number = ''
-    for number, time in phone_times.items():
-        if time > max_time:
-            max_time = time
-            max_number = number
+    max_number = max(phone_times, key=phone_times.get)
+    max_time = phone_times.get(max_number)
+
     return [max_number, max_time]
 
 def test():
