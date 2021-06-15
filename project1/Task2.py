@@ -23,13 +23,13 @@ September 2016.".
 def total_phone_time(calls):
     total_time = dict()
     for call in calls:
-        numbers = [call[0], call[1]]
-        time = call[3]
-        for number in numbers:
-            if number not in total_time:
-                total_time[number] = int(time)
-            else:
-                total_time[number] += int(time)
+        caller = call[0]
+        receiver = call[1]
+        duration = call[-1]
+
+        total_time[caller] = total_time.get(caller, 0) + int(duration)
+        total_time[receiver] = total_time.get(receiver, 0) + int(duration)
+
     return total_time
 
 def longest_phone_time(calls):
