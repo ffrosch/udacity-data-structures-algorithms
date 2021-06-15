@@ -45,8 +45,7 @@ def possible_telemarketers(calls, texts):
     only_called = only_calling(calls)
     used_texts = using_texts(texts)
     candidates = only_called - used_texts
-    pruned_candidates = [number for number in candidates if not number.startswith('140')]
-    return sorted(pruned_candidates)
+    return sorted(candidates)
 
 def test():
     calls = [
