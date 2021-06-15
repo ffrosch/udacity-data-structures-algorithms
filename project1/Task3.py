@@ -116,6 +116,5 @@ areas_called_from_bangalore = areas_called(calls_from_bangalore)
 calls_within_bangalore_ratio = calls_to_area_ratio(calls_from_bangalore, bangalore)
 
 print('The numbers called by people in Bangalore have codes:')
-for code in areas_called_from_bangalore:
-    print(code)
+print(*areas_called_from_bangalore, sep='\n')
 print(f'{calls_within_bangalore_ratio * 100} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.')
