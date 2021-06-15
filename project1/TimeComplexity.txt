@@ -79,9 +79,10 @@ create variable (1)
 if (n)
 add (n)
 add to set (n)
+sort result (n log n)
 return result (1)
 
-N = 4n + 5
+N = n logn + 4n + 5
 
 ## calls_to_area_ratio
 if prefix (1)
@@ -90,9 +91,9 @@ num calls (3n + 4) + (n)
 num area_calls (4n + 5) + (2n)
 return result (1)
 
-N = 10n + 12
+N = n logn + 10n + 12
 
-Big O: O(n)
+Big O: O(n logn)
 
 
 # Task4
@@ -126,7 +127,8 @@ only_calling (4n + len(a) + 5)
 using_texts (4n + len(b) + len(c) + 5)
 set difference (len(d))
 iterate over list (n)
+sort result (n logn)
 return result (1)
 
-N = 9n + 4len(x) + 11
-Big O: O(n)
+N = n logn + 9n + 4len(x) + 11
+Big O: O(n logn)
