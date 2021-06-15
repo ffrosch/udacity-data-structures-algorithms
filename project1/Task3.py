@@ -67,7 +67,7 @@ def areas_called(calls):
 
         area_code = None
 
-        if first_letter == '1':
+        if number[:3] == '140':
             area_code = number[:3]
         elif first_letter in '789':
             area_code = number[:4]
