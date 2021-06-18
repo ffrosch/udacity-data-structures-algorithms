@@ -2,6 +2,7 @@
 Read file into texts and calls.
 It's ok if you don't understand how to read files
 """
+from collections import defaultdict
 import csv
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
@@ -16,11 +17,10 @@ TASK 2: Which telephone number spent the longest time on the phone
 during the period? Don't forget that time spent answering a call is
 also time spent on the phone.
 Print a message:
-"<telephone number> spent the longest time, <total time> seconds, on the phone during 
-September 2016.".
+"<telephone number> spent the longest time, <total time> seconds,
+on the phone during September 2016.".
 """
 
-from collections import defaultdict
 
 def total_phone_time(calls):
     total_time = defaultdict(int)
@@ -34,12 +34,14 @@ def total_phone_time(calls):
 
     return total_time
 
+
 def longest_phone_time(calls):
     phone_times = total_phone_time(calls)
     max_number = max(phone_times, key=phone_times.get)
     max_time = phone_times.get(max_number)
 
     return [max_number, max_time]
+
 
 def test():
     calls = [
@@ -61,6 +63,7 @@ def test():
     assert(total_times == result_total_phone_time)
     assert(max_time == ['1401234568', 50])
 
+
 # test()
 max_time = longest_phone_time(calls)
-print(f'{max_time[0]} spent the longest time, {max_time[1]} seconds, on the phone during September 2016.')
+print(f'{max_time[0]} spent the longest time, {max_time[1]} seconds, on the phone during September 2016.') # noqa

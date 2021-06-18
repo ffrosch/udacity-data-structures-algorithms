@@ -34,7 +34,8 @@ to the following area codes and mobile prefixes:
 Print the answer as part of a message:
 "The numbers called by people in Bangalore have codes:"
  <list of codes>
-The list of codes should be print out one per line in lexicographic order with no duplicates.
+The list of codes should be print out one per line in lexicographic order with
+no duplicates.
 
 Part B: What percentage of calls from fixed lines in Bangalore are made
 to fixed lines also in Bangalore? In other words, of all the calls made
@@ -47,7 +48,9 @@ to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
 
-def calls_from_area(calls: List[List[str]], prefix: str = None) -> List[List[str]]:
+
+def calls_from_area(calls: List[List[str]],
+                    prefix: str = None) -> List[List[str]]:
     if prefix is None:
         raise ValueError('Please specify area-prefix!')
 
@@ -57,7 +60,8 @@ def calls_from_area(calls: List[List[str]], prefix: str = None) -> List[List[str
             call_lst.append(call)
 
     return call_lst
-    
+
+
 def areas_called(calls):
     area_list = set()
 
@@ -81,14 +85,17 @@ def areas_called(calls):
 
     return sorted(area_list)
 
+
 def calls_to_area_ratio(calls, prefix=None):
     if prefix is None:
         raise ValueError('Please specify area-prefix!')
 
     num_total_calls = len(calls)
-    num_same_area_calls = len([call for call in calls if call[1].startswith(prefix)])
+    num_same_area_calls = len(
+        [call for call in calls if call[1].startswith(prefix)])
 
     return round(num_same_area_calls / num_total_calls, 4)
+
 
 def test():
     calls = [
@@ -109,12 +116,14 @@ def test():
     assert(areas_called(calls) == sorted(['(080)', '(09040)', '140', '7777']))
     assert(calls_to_area_ratio(calls_from_bangalore, bangalore) == 0.3333)
 
+
 # test()
 bangalore = '(080)'
 calls_from_bangalore = calls_from_area(calls, bangalore)
 areas_called_from_bangalore = areas_called(calls_from_bangalore)
-calls_within_bangalore_ratio = calls_to_area_ratio(calls_from_bangalore, bangalore)
+calls_within_bangalore_ratio = calls_to_area_ratio(
+    calls_from_bangalore, bangalore)
 
 print('The numbers called by people in Bangalore have codes:')
 print(*areas_called_from_bangalore, sep='\n')
-print(f'{calls_within_bangalore_ratio * 100} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.')
+print(f'{calls_within_bangalore_ratio * 100} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.')  # noqa
