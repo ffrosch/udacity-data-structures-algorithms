@@ -1,9 +1,16 @@
+# TODO: increase num_entries on put
+# TODO: add delete function
+# TODO: add __repr__ function
+# TODO: add auto-increase of bucket for coefficient n/b larger than 0.7
+
+
 class LinkedListNode:
     
     def __init__(self, key, value):
         self.key = key
         self.value = value
         self.next = None
+
 
 class HashMap:
     
