@@ -57,15 +57,16 @@ def find_files(suffix, path):
     return matched_files
 
 
-print(find_files(".c", "./"))
-# ['./testdir/subdir1/a.c', './testdir/t1.c', './testdir/subdir5/a.c', './testdir/subdir3/subsubdir1/b.c']
-print(find_files(".", "./"))
-# ValueError: '.' is not a valid suffix!
-print(find_files(".c", "./dir-does-not-exist"))
-# ValueError: path must be a directory!
-print(find_files(".gitkeep", "./"))
-# ['./testdir/subdir2/.gitkeep', './testdir/subdir4/.gitkeep']
-print(find_files("keep", "./"))
-# []
-print(find_files("a.c", "./"))
-# ValueError: 'a.c' is not a valid suffix!
+if __name__ == "__main__":
+    print(find_files(".c", "./"))
+    # ['./testdir/subdir1/a.c', './testdir/t1.c', './testdir/subdir5/a.c', './testdir/subdir3/subsubdir1/b.c']
+    print(find_files(".", "./"))
+    # ValueError: '.' is not a valid suffix!
+    print(find_files(".c", "./dir-does-not-exist"))
+    # ValueError: path must be a directory!
+    print(find_files(".gitkeep", "./"))
+    # ['./testdir/subdir2/.gitkeep', './testdir/subdir4/.gitkeep']
+    print(find_files("keep", "./"))
+    # []
+    print(find_files("a.c", "./"))
+    # ValueError: 'a.c' is not a valid suffix!
