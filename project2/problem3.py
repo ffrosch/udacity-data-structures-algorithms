@@ -17,28 +17,26 @@ class Node:
         return other.freq > self.freq
 
 
-def merge_heap(heap: list) -> Node:
-    """Merge a heap list into a tree."""
+def text_to_heap(text: str) -> list:
+    """Convert text to a min-heap."""
+    frequencies = dict(Counter(text))
+    heap = [Node(key, value) for key, value in frequencies.items()]
+    heapq.heapify(heap)
+    return heap
+
+
+def heap_to_tree(heap: list) -> Node:
+    """Recursively merge a min-heap into a tree."""
+    # edge case empty text:
+    if heap == []:
+        return Node("", 0)
     if len(heap) > 1:
         child1, child2 = heapq.heappop(heap), heapq.heappop(heap)
         parent = Node(None, child1.freq + child2.freq)
         parent.left, parent.right = child1, child2
         heapq.heappush(heap, parent)
-        merge_heap(heap)
+        heap_to_tree(heap)
     return heap[0]
-
-
-def text_to_tree(text: str) -> Node:
-    """Convert text to a min-heap frequency tree."""
-    frequencies = dict(Counter(text))
-    # edge case empty text:
-    if frequencies == {}:
-        return Node("", 0)
-
-    heap = [Node(key, value) for key, value in frequencies.items()]
-    heapq.heapify(heap)
-    tree = merge_heap(heap)
-    return tree
 
 
 def create_codes(node: Node, code: str = "") -> dict:
@@ -58,7 +56,8 @@ def create_codes(node: Node, code: str = "") -> dict:
 
 def huffman_encoding(data: str) -> Tuple[str, Node]:
     """Encode data with huffman codes."""
-    tree = text_to_tree(data)
+    heap = text_to_heap(data)
+    tree = heap_to_tree(heap)
     codes = create_codes(tree)
     code = "".join([codes[char] for char in data])
     return code, tree
