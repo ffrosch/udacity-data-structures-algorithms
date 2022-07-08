@@ -9,10 +9,17 @@ class Node:
     def __repr__(self):
         return str(self.value)
 
+    def __eq__(self, other):
+        return self.value == other.value
+
+    def __hash__(self):
+        return hash(self.value)
+
 
 class LinkedList:
     def __init__(self):
         self.head = None
+        self.size = 0
 
     def __str__(self):
         cur_head = self.head
@@ -22,7 +29,24 @@ class LinkedList:
             cur_head = cur_head.next
         return out_string
 
+    def __len__(self):
+        return self.size
+
+    def __iter__(self):
+        self.current_index = 0
+        self.current_node = self.head
+        return self
+
+    def __next__(self):
+        if self.current_index < len(self):
+            node = self.current_node
+            self.current_node = self.current_node.next
+            self.current_index += 1
+            return node
+        raise StopIteration
+
     def append(self, value):
+        self.size += 1
 
         if self.head is None:
             self.head = Node(value)
@@ -34,44 +58,31 @@ class LinkedList:
 
         node.next = Node(value)
 
-    def size(self):
-        size = 0
-        node = self.head
-        while node:
-            size += 1
-            node = node.next
-
-        return size
-
-
-def unique_values(l: LinkedList) -> dict:
-    seen = dict()
-    current = l.head
-    while current:
-        seen[current.value] = None
-        current = current.next
-    return seen
-
 
 def union(l1: LinkedList, l2: LinkedList) -> LinkedList:
-    set1 = unique_values(l1)
-    set2 = unique_values(l2)
-    union_list = list(set1 | set2)
-
+    seen = set()
     result = LinkedList()
-    for elem in union_list:
-        result.append(elem)
+
+    for lst in [l1, l2]:
+        for elem in lst:
+            if elem not in seen:
+                result.append(elem)
+                seen.add(elem)
+
     return result
 
 
 def intersection(l1: LinkedList, l2: LinkedList) -> LinkedList:
-    u1 = unique_values(l1)
-    u2 = unique_values(l2)
-
+    seen = set()
     result = LinkedList()
-    for elem in u1.keys():
-        if elem in u2:
+
+    for elem in l1:
+        seen.add(elem)
+    for elem in l2:
+        if elem in seen:
             result.append(elem)
+            seen.remove(elem)
+
     return result
 
 
