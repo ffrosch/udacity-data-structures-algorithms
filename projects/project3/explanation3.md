@@ -11,3 +11,6 @@ the space that is required for this is constant (an array of length 10).
 Every time one of the output numbers is elongated, the algorithm switches to the
 other output number for the next step. This ensures that no number is more than
 one step ahead in length.
+
+Space complexity of this problem is `O(1)`, because the frequency array is
+always the same size, no matter the length of the input array.
