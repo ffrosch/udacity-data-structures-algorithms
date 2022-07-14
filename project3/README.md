@@ -80,3 +80,204 @@ test_function([[6, 7, 8, 1, 2, 3, 4], 8])
 test_function([[6, 7, 8, 1, 2, 3, 4], 1])
 test_function([[6, 7, 8, 1, 2, 3, 4], 10])
 ```
+
+## 3 - Rearrange Array Elements
+
+Rearrange Array Elements so as to form two number such that their sum is maximum. Return these two numbers. You can assume that all array elements are in the range [0, 9]. The number of digits in both the numbers cannot differ by more than 1. You're not allowed to use any sorting function that Python provides and the expected time complexity is `O(nlog(n))`.
+
+for e.g. `[1, 2, 3, 4, 5]`
+
+The expected answer would be `[531, 42]`. Another expected answer can be `[542, 31]`. In scenarios such as these when there are more than one possible answers, return any one.
+
+Here is some boilerplate code and test cases to start with:
+
+```python
+def rearrange_digits(input_list):
+    """
+    Rearrange Array Elements so as to form two number such that their sum is maximum.
+
+    Args:
+       input_list(list): Input List
+    Returns:
+       (int),(int): Two maximum sums
+    """
+    pass
+
+def test_function(test_case):
+    output = rearrange_digits(test_case[0])
+    solution = test_case[1]
+    if sum(output) == sum(solution):
+        print("Pass")
+    else:
+        print("Fail")
+
+test_function([[1, 2, 3, 4, 5], [542, 31]])
+test_case = [[4, 6, 2, 5, 9, 8], [964, 852]]
+```
+
+## 4 - Dutch National Flag Problem
+
+Given an input array consisting on only 0, 1, and 2, sort the array in a single traversal. You're not allowed to use any sorting function that Python provides.
+
+**Note**: `O(n)` does not necessarily mean single-traversal. For e.g. if you traverse the array twice, that would still be an `O(n)` solution but it will not count as single traversal.
+
+Here is some boilerplate code and test cases to start with:
+
+```python
+def sort_012(input_list):
+    """
+    Given an input array consisting on only 0, 1, and 2, sort the array in a single traversal.
+
+    Args:
+       input_list(list): List to be sorted
+    """
+    pass
+
+def test_function(test_case):
+    sorted_array = sort_012(test_case)
+    print(sorted_array)
+    if sorted_array == sorted(test_case):
+        print("Pass")
+    else:
+        print("Fail")
+
+test_function([0, 0, 2, 2, 2, 1, 1, 1, 2, 0, 2])
+test_function([2, 1, 2, 0, 0, 2, 1, 0, 1, 0, 0, 2, 2, 2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 0, 1])
+test_function([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2])
+```
+
+## 5 - Trie
+
+Before we start let us reiterate the key components of a Trie or Prefix Tree. A trie is a tree-like data structure that stores a dynamic set of strings. Tries are commonly used to facilitate operations like predictive text or autocomplete features on mobile phones or web search.
+
+Before we move into the autocomplete function we need to create a working trie for storing strings.  We will create two classes:
+* A `Trie` class that contains the root node (empty string)
+* A `TrieNode` class that exposes the general functionality of the Trie, like inserting a word or finding the node which represents a prefix.
+
+Give it a try by implementing the `TrieNode` and `Trie` classes below!
+
+**Finding Suffixes**
+
+Now that we have a functioning Trie, we need to add the ability to list suffixes to implement our autocomplete feature.  To do that, we need to implement a new function on the `TrieNode` object that will return all complete word suffixes that exist below it in the trie.  For example, if our Trie contains the words `["fun", "function", "factory"]` and we ask for suffixes from the `f` node, we would expect to receive `["un", "unction", "actory"]` back from `node.suffixes()`.
+
+Using the code you wrote for the `TrieNode` above, try to add the suffixes function below. (Hint: recurse down the trie, collecting suffixes as you go.)
+
+## 6 - Max and Min in a Unsorted Array
+
+In this problem, we will look for smallest and largest integer from a list of unsorted integers. The code should run in O(n) time. Do not use Python's inbuilt functions to find min and max.
+
+Bonus Challenge: Is it possible to find the max and min in a single traversal?
+
+```python
+def get_min_max(ints):
+    """
+    Return a tuple(min, max) out of list of unsorted integers.
+
+    Args:
+       ints(list): list of integers containing one or more integers
+    """
+    pass
+
+## Example Test Case of Ten Integers
+import random
+
+l = [i for i in range(0, 10)]  # a list containing 0 - 9
+random.shuffle(l)
+
+print ("Pass" if ((0, 9) == get_min_max(l)) else "Fail")
+```
+Sorting usually requires O(n log n) time Can you come up with a O(n) algorithm (i.e., linear time)?
+
+## 7 - HTTPRouter using a Trie
+
+For this exercise we are going to implement an HTTPRouter like you would find in a typical web server using the Trie data structure we learned previously.
+
+There are many different implementations of HTTP Routers such as regular expressions or simple string matching, but the Trie is an excellent and very efficient data structure for this purpose.
+
+The purpose of an HTTP Router is to take a URL path like "/", "/about", or "/blog/2019-01-15/my-awesome-blog-post" and figure out what content to return. In a dynamic web server, the content will often come from a block of code called a handler.
+
+![](https://video.udacity-data.com/topher/2017/August/598b5e9b_2-5-managing-app-location-with-react-router-2x/2-5-managing-app-location-with-react-router-2x.jpg)
+
+First we need to implement a slightly different Trie than the one we used for autocomplete. Instead of simple words the Trie will contain a part of the http path at each node, building from the root node `/`
+
+In addition to a path though, we need to know which function will handle the http request. In a real router we would probably pass an instance of a class like Python's [SimpleHTTPRequestHandler](https://docs.python.org/3/library/http.server.html#http.server.SimpleHTTPRequestHandler) which would be responsible for handling requests to that path. For the sake of simplicity we will just use a string that we can print out to ensure we got the right _handler_
+
+We could split the path into letters similar to how we did the autocomplete Trie, but this would result in a Trie with a very large number of nodes and lengthy traversals if we have a lot of pages on our site. A more sensible way to split things would be on the parts of the path that are separated by slashes ("/"). A Trie with a single path entry of: "/about/me" would look like:
+
+(root, None) -> ("about", None) -> ("me", "About Me handler")
+
+We can also simplify our RouteTrie a bit by excluding the suffixes method and the endOfWord property on RouteTrieNodes. We really just need to insert and find nodes, and if a RouteTrieNode is not a leaf node, it won't have a handler which is fine.
+
+```python
+# A RouteTrie will store our routes and their associated handlers
+class RouteTrie:
+    def __init__(self, ...):
+        # Initialize the trie with an root node and a handler, this is the root path or home page node
+
+    def insert(self, ...):
+        # Similar to our previous example you will want to recursively add nodes
+        # Make sure you assign the handler to only the leaf (deepest) node of this path
+
+    def find(self, ...):
+        # Starting at the root, navigate the Trie to find a match for this path
+        # Return the handler for a match, or None for no match
+
+# A RouteTrieNode will be similar to our autocomplete TrieNode... with one additional element, a handler.
+class RouteTrieNode:
+    def __init__(self, ...):
+        # Initialize the node with children as before, plus a handler
+
+    def insert(self, ...):
+        # Insert the node as before
+```
+
+Next we need to implement the actual Router. The router will initialize itself with a RouteTrie for holding routes and associated handlers. It should also support adding a handler by path and looking up a handler by path. All of these operations will be delegated to the RouteTrie.
+
+Hint: the RouteTrie stores handlers under path parts, so remember to split your path around the '/' character
+
+Bonus Points: Add a not found handler to your Router which is returned whenever a path is not found in the Trie.
+
+More Bonus Points: Handle trailing slashes! A request for '/about' or '/about/' are probably looking for the same page. Requests for '' or '/' are probably looking for the root handler. Handle these edge cases in your Router.
+
+```python
+# The Router class will wrap the Trie and handle
+class Router:
+    def __init__(self, ...):
+        # Create a new RouteTrie for holding our routes
+        # You could also add a handler for 404 page not found responses as well!
+
+    def add_handler(self, ...):
+        # Add a handler for a path
+        # You will need to split the path and pass the pass parts
+        # as a list to the RouteTrie
+
+    def lookup(self, ...):
+        # lookup path (by parts) and return the associated handler
+        # you can return None if it's not found or
+        # return the "not found" handler if you added one
+        # bonus points if a path works with and without a trailing slash
+        # e.g. /about and /about/ both return the /about handler
+
+
+    def split_path(self, ...):
+        # you need to split the path into parts for
+        # both the add_handler and loopup functions,
+        # so it should be placed in a function here
+```
+
+**Test Cases**
+
+```python
+# Here are some test cases and expected outputs you can use to test your implementation
+
+# create the router and add a route
+router = Router("root handler", "not found handler") # remove the 'not found handler' if you did not implement this
+router.add_handler("/home/about", "about handler")  # add a route
+
+# some lookups with the expected output
+print(router.lookup("/")) # should print 'root handler'
+print(router.lookup("/home")) # should print 'not found handler' or None if you did not implement one
+print(router.lookup("/home/about")) # should print 'about handler'
+print(router.lookup("/home/about/")) # should print 'about handler' or None if you did not handle trailing slashes
+print(router.lookup("/home/about/me")) # should print 'not found handler' or None if you did not implement one
+```
