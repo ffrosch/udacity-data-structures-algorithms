@@ -12,5 +12,9 @@ Every time one of the output numbers is elongated, the algorithm switches to the
 other output number for the next step. This ensures that no number is more than
 one step ahead in length.
 
-Space complexity of this problem is `O(1)`, because the frequency array is
-always the same size, no matter the length of the input array.
+Space complexity of this problem is `O(n)`. We are using three pointers
+`x, y, switch` which are constants and thus not considered for the complexity
+analysis. Additionally we are using two array. The array `freq` is of constant
+length (10) and thus a constant and not considered. The input array `arr` needs
+to be traversed und thus kept in memory. This means that the space complexity
+is dependent on the input array.

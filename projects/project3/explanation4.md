@@ -1,7 +1,8 @@
 # Problem 4 - Dutch National Flag Problem
 
 The algorithm sorts the array in-place with one iteration over the array.
+It is a variant of the quicksort algorithm.
 
 Time complexity for this problem is `O(n)` and space complexity for this problem
-is `O(n)`, as the array is sorted in place an thus the space taken used is
-proportional to the length of the array.
+is `O(1)`. We only need to keep track of the three pointers
+`current, next_zero, next_two`.

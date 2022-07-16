@@ -6,10 +6,29 @@ store words from a dictionary for e.g. autocomplete functionality.
 Given that **M** is the number of words in the Trie and **N** is the average
 length of a word:
 
-```
-TrieNode's time complexity and space complexity to insert a character is O(1).
-TrieNode's time complexity and space complexity of suffixes of a node is O(M*N).
+**Time Complexity**
 
-Trie's time complexity and space complexity to insert a word is O(n).
-Trie's time complexity to find a prefix is O(n) and space complexity is O(1).
+```
+TrieNode.__init__: O(1)
+TrieNode.insert: O(1)
+TrieNode.suffixes: O(M*N)
+
+Trie.__init__: O(1)
+Trie.insert: O(n)
+Trie.find: O(n)
+```
+
+**Space Complexity**
+
+```
+TrieNode.__init__: O(1)
+TrieNode.insert: O(1) / O(n) -> basically the same because it would be
+dependent on the size of the input in theory, but because the input is always
+one character it's basically constant.
+TrieNode.suffixes: O(M*N)
+
+Trie.__init__: O(1)
+Trie.insert: O(n)
+Trie.find: O(n) -> we need to iterate over the prefix and thus the space needed
+is dependend on the size of the prefix.
 ```

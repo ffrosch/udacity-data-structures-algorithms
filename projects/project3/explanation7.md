@@ -10,12 +10,38 @@ The router also automatically deals with trailing slashes.
 Given that **M** is the number of words in the Trie and **N** is the average
 length of a word:
 
+**Time Complexity**
+
 ```
-RouteTrieNode's time complexity and space complexity to insert a character is O(1).
+RouteTrieNode.__init__: O(1)
+RouteTrieNode.insert: O(1) / O(n) -> basically the same because it would be
+dependent on the size of the input in theory, but because the input is always
+one character it's basically constant.
 
-RouteTrie's time complexity and space complexity to insert a route is O(n).
-RouteTrie's time complexity and space complexity to find a handler is O(M*N).
+RouteTrie.__init__: O(1)
+RouteTrie.insert: O(n)
+RouteTrie.find: O(M*N)
 
-Router's time complexity and space complexity to add a handler is O(n).
-Router's time complexity and space complexity to lookup a route is O(M*N).
+Router.__init__: O(1)
+Router.add_handler: O(n)
+Router.lookup: O(M*N)
+Router.split_path: O(n)
+```
+
+**Space Complexity**
+
+```
+RouteTrieNode.__init__: O(1)
+RouteTrieNode.insert: O(1) / O(n) -> basically the same because it would be
+dependent on the size of the input in theory, but because the input is always
+one character it's basically constant.
+
+RouteTrie.__init__: O(1)
+RouteTrie.insert: O(n)
+RouteTrie.find: O(M*N)
+
+Router.__init__: O(1)
+Router.add_handler: O(n)
+Router.lookup: O(M*N)
+Router.split_path: O(n)
 ```

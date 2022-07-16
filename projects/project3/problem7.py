@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.10
 
-# A RouteTrieNode will be similar to our autocomplete TrieNode... with one additional element, a handler.
+# A RouteTrieNode will be similar to our autocomplete TrieNode...
+# with one additional element, a handler.
 class RouteTrieNode:
     def __init__(self, value="", handler=""):
         # Initialize the node with children as before, plus a handler
