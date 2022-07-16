@@ -2,7 +2,8 @@
 /backups
 /videos
 /.git
-/.ipynb_checkpoints
+.ipynb_checkpoints
 *.code-workspace
 *.zip
 .vscode
+__pycache__
