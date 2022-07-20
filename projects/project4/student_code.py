@@ -20,6 +20,36 @@ class PriorityQueue:
         return len(self.queue)
 
 
+# Distance functions
+# ------------------------
+# Euclidean: Euclidean distance is the straight-line distance between two
+# points. This means that movement is allowed at every angle.
+# It guarantees to find the shortest distance possible, but might
+# underestimate the real distance if e.g. an object is in the way.
+# Euclidean distance is quite expensive to calculate because it uses squares
+# and square roots.
+#
+# Manhatten: Manhatten distance calculates the absolute differences between
+# to coordinate-pairs. For Manhatten distance only horizontal and vertical
+# moves are allowed, which makes it very useful for distances between point
+# on grids. For road networks it might actually be a better choice, because
+# roads rarely go from A to B "as-the-bird-flies" and thus be more similar
+# to a grid structure than anything else. Manhatten distance could overestimate
+# the real distance.
+#
+# Diagonal: Diagonal distance allows diagonal moves and tries to find the
+# shortest path by combining diagonal with horizontal movement. Its distance
+# estimates will usually lie somewhere between Euclidean and Manhatten
+# distance.
+#
+# Dijkstra: Starts at a specified source and generates all shortest-paths to
+# every node.
+#
+# A*: A* is a very efficient algorithm to find the shortes path between a defined
+# start and a defined end. Its major drawback is its high space complexity of
+# O(b^d). It is guaranteed to find a solution if it exists.
+
+
 def distance(p1: Tuple[float, float], p2: Tuple[float, float]) -> float:
     """Calculate Euclidean Distance between two points.
 
