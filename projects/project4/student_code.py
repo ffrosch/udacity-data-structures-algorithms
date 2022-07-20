@@ -28,6 +28,7 @@ class PriorityQueue:
 # underestimate the real distance if e.g. an object is in the way.
 # Euclidean distance is quite expensive to calculate because it uses squares
 # and square roots.
+# formula: d =  √[ (x2 – x1)2 + (y2 – y1)2]
 #
 # Manhatten: Manhatten distance calculates the absolute differences between
 # to coordinate-pairs. For Manhatten distance only horizontal and vertical
@@ -36,11 +37,18 @@ class PriorityQueue:
 # roads rarely go from A to B "as-the-bird-flies" and thus be more similar
 # to a grid structure than anything else. Manhatten distance could overestimate
 # the real distance.
+# formula:  d = |x1 - x2| + |y1 - y2|
 #
 # Diagonal: Diagonal distance allows diagonal moves and tries to find the
 # shortest path by combining diagonal with horizontal movement. Its distance
 # estimates will usually lie somewhere between Euclidean and Manhatten
 # distance.
+# formula:
+# d(n) = c_dd_min+c_n(d_max−d_min)
+# d_max=max(∣n.x−goal.x∣,∣n.y−goal.y∣)d\_{max} = max(|n.x - goal.x|, |n.y - goal.y|)d_max=max(∣n.x−goal.x∣,∣n.y−goal.y∣)
+# d_min=min(∣n.x−goal.x∣,∣n.y−goal.y∣)d\_{min} = min(|n.x - goal.x|, |n.y - goal.y|)d_min=min(∣n.x−goal.x∣,∣n.y−goal.y∣)
+# c_n=cost of non-diagonal movementc\_n = \text{cost of non-diagonal movement}c_n=cost of non-diagonal movement
+# cd=cost of diagonal movement=cn2≈cn⋅1.414c_d = \text{cost of diagonal movement} = c_n \sqrt{2} \approx c_n \cdot 1.414c​d​​=cost of diagonal movement=c​n​​√​2​​​≈c​n​​⋅1.414
 #
 # Dijkstra: Starts at a specified source and generates all shortest-paths to
 # every node.
