@@ -22,13 +22,20 @@ class PriorityQueue:
 
 # Distance functions
 # ------------------------
+#
+# Resources: http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
+#
+#
+# Given two points in a 2D space P (x1, y1) and P (x2, y2), distances can be
+# calculated as follows.
+#
 # Euclidean: Euclidean distance is the straight-line distance between two
 # points. This means that movement is allowed at every angle.
 # It guarantees to find the shortest distance possible, but might
 # underestimate the real distance if e.g. an object is in the way.
 # Euclidean distance is quite expensive to calculate because it uses squares
 # and square roots.
-# formula: d =  √[ (x2 – x1)2 + (y2 – y1)2]
+# formula: d =  √[(x2 – x1)^2 + (y2 – y1)^2]
 #
 # Manhatten: Manhatten distance calculates the absolute differences between
 # to coordinate-pairs. For Manhatten distance only horizontal and vertical
@@ -44,11 +51,11 @@ class PriorityQueue:
 # estimates will usually lie somewhere between Euclidean and Manhatten
 # distance.
 # formula:
-# d(n) = c_dd_min+c_n(d_max−d_min)
-# d_max=max(∣n.x−goal.x∣,∣n.y−goal.y∣)d\_{max} = max(|n.x - goal.x|, |n.y - goal.y|)d_max=max(∣n.x−goal.x∣,∣n.y−goal.y∣)
-# d_min=min(∣n.x−goal.x∣,∣n.y−goal.y∣)d\_{min} = min(|n.x - goal.x|, |n.y - goal.y|)d_min=min(∣n.x−goal.x∣,∣n.y−goal.y∣)
-# c_n=cost of non-diagonal movementc\_n = \text{cost of non-diagonal movement}c_n=cost of non-diagonal movement
-# cd=cost of diagonal movement=cn2≈cn⋅1.414c_d = \text{cost of diagonal movement} = c_n \sqrt{2} \approx c_n \cdot 1.414c​d​​=cost of diagonal movement=c​n​​√​2​​​≈c​n​​⋅1.414
+# D = cost for moving horizontally and vertically and
+# D2 = cost for moving diagonally
+# dx = |x1 - x2|
+# dy = |y1 - y2|
+# d = D * (dx + dy) + (D2 - 2 * D) * min(dx, dy)
 #
 # Dijkstra: Starts at a specified source and generates all shortest-paths to
 # every node.
